@@ -22,26 +22,20 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    // ✅ Allow 0 tip when "None" is selected
     const tipAmount = billAmount * serviceQuality;
     const totalAmount = billAmount + tipAmount;
     const perPerson = totalAmount / numberOfPeople;
     const tipPerPerson = tipAmount / numberOfPeople;
 
-    // Animate values (pass previous values as start, final values as end)
-    animateValue(tip, tip.textContent, tipAmount, 1000, true);
-    animateValue(total, total.textContent, totalAmount, 1000, true);
-    animateValue(person, person.textContent, perPerson, 1000, true);
-    animateValue(tipPerson, tipPerson.textContent, tipPerPerson, 1000, true);
+    // Animate values
+    animateValue(tip, tip.textContent, tipAmount, 1000);
+    animateValue(total, total.textContent, totalAmount, 1000);
+    animateValue(person, person.textContent, perPerson, 1000);
+    animateValue(tipPerson, tipPerson.textContent, tipPerPerson, 1000);
   }
 
-  function animateValue(
-    element,
-    startValue,
-    endValue,
-    duration,
-    isMoney = false
-  ) {
-    // Extract only numbers from previous text
+  function animateValue(element, startValue, endValue, duration) {
     let start = parseFloat(startValue.replace(/[^0-9.-]+/g, "")) || 0;
     const startTime = performance.now();
 
@@ -50,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const progress = Math.min(elapsed / duration, 1);
       const value = start + (endValue - start) * progress;
 
-      element.textContent = value.toFixed(2); // only number
+      element.textContent = value.toFixed(2);
       if (progress < 1) requestAnimationFrame(update);
     }
 

@@ -1,3 +1,21 @@
+const typed = new Typed(".auto-type", {
+  strings: ["Tip", "Split", "Enjoy"],
+  typeSpeed: 100,
+  backSpeed: 50,
+  loop: true,
+  backDelay: 1000,
+  cursorChar: "|",
+  smartBackspace: true,
+});
+const typed2 = new Typed(".type", {
+  strings: ["Hrishi Yadav"],
+  typeSpeed: 100, // natural typing speed
+  backSpeed: 100, // speed of deleting
+  loop: true, // repeat animation
+  backDelay: 1000, // pause before deleting // custom cursor
+  showCursor: true, // optional here
+});
+
 document.addEventListener("DOMContentLoaded", () => {
   function calculateTip() {
     const billAmount = parseFloat(document.getElementById("bill").value);
